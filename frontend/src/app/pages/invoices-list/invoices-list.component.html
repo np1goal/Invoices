@@ -1,0 +1,22 @@
+<div class="invoices-list">
+    <div class="list-controls">
+        <div class="title"></div>
+        <button>New Invoice</button>
+    </div>
+    <div class="all-invoice-list">
+        <div class="list">
+            <dl>
+                <ng-container *ngFor="let item of info">
+                    <dt>
+                        <span>{{item.id}}</span> 
+                        <span>{{item.paymentDue}}</span> 
+                        <span>{{item.clientName}}</span> 
+                        <span>£ {{item.total}}</span> 
+                        <span>{{item.status}}</span>
+                        <img src="../../../assets/icon-arrow-right.svg" alt="arrow right">
+                    </dt>
+                </ng-container>
+            </dl>
+        </div>
+    </div>
+</div>
