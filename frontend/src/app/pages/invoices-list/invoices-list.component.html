@@ -1,22 +1,59 @@
-<div class="invoices-list">
-    <div class="list-controls">
-        <div class="title"></div>
-        <button>New Invoice</button>
-    </div>
-    <div class="all-invoice-list">
-        <div class="list">
-            <dl>
-                <ng-container *ngFor="let item of info">
-                    <dt>
-                        <span>{{item.id}}</span> 
-                        <span>{{item.paymentDue}}</span> 
-                        <span>{{item.clientName}}</span> 
-                        <span>£ {{item.total}}</span> 
-                        <span>{{item.status}}</span>
-                        <img src="../../../assets/icon-arrow-right.svg" alt="arrow right">
-                    </dt>
-                </ng-container>
-            </dl>
+<div>
+    <app-sidebar></app-sidebar>
+<!--    <app-forms></app-forms>-->
+    <main id="main">
+        <div class="invoices-list">
+            <div class="list-controls">
+                <div class="title">
+                    <h1 id="invoices-title">Invoices</h1>
+                    <span id="invoices-length">There are {{displayInvoice.length}} total invoices</span>
+                </div>
+                <div class="filters-newinvoice">
+                    <div class="filter-button-div">
+                        <button id="filter-invoice">Filter by status <img id="down-arrow" src="../../../assets/icon-arrow-down.svg" alt="Down arrow"></button>
+                        <div class="feature-list">
+                            <div><input type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;<label>Draft</label><br></div>
+                            <div><input type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;<label>Pending</label><br></div>
+                            <div><input type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;<label>Paid</label><br></div>
+                        </div>
+                    </div> 
+                    <button class="add-invoice-button"><span><img src="../../../assets/icon-plus.svg" alt="plus icon"></span>New Invoice</button>
+                </div>
+            </div>
+            <div *ngIf="displayInvoice.length === 0" class="no-invoices">
+                <img src="../../../assets/illustration-empty.svg">
+                <h3>There is nothing here</h3>
+                <p>Create an invoice by clicking the <br>New Invoice button and get started</p>
+            </div>
+            <div *ngIf="displayInvoice.length > 0" class="list-of-invoices">
+                <div class="all-invoice-list">
+                    <div class="list">
+                        <dl>
+                            <ng-container *ngFor="let item of displayInvoice">
+                                <dt class="web-invoice-item" routerLink="invoice">
+                                    <span>#{{item.id}}</span> 
+                                    <span>{{item.paymentDue}}</span> 
+                                    <span>{{item.clientName}}</span> 
+                                    <span class="price">£ {{item.total}}</span> 
+                                    <span><span class="{{item.status}}">&#9679; {{item.status}}</span></span>
+                                    <img src="../../../assets/icon-arrow-right.svg" alt="arrow right">
+                                </dt>
+                                <dt class="mobile-invoice-item">
+                                    <div>
+                                        <span>#{{item.id}}</span> 
+                                        <span>{{item.paymentDue}}</span> 
+                                        <span class="price">£ {{item.total}}</span> 
+                                    </div>
+                                    <div>
+                                        <span>{{item.clientName}}</span> 
+                                        <span><span class="{{item.status}}">&#9679; {{item.status}}</span></span>
+                                    </div>
+                                </dt>
+                            </ng-container>
+                        </dl>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 </div>

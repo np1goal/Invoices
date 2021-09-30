@@ -1,0 +1,143 @@
+<div class="document">
+    <app-sidebar></app-sidebar>
+<!--    <app-forms></app-forms>-->
+    <main id="main">
+        <div id="invoice-page" class="invoice-page">
+            <div class="web-invoice">
+                <div class="goback"><button id="go-back-button-web" routerLink=""><img src="../../../assets/icon-arrow-left.svg" alt="left arrow"> Go Back</button></div>
+                <div class="invoice-activity" id="invoice-activity-web">
+                    <div class="invoice-status">
+                        <span class="status-heading">Status</span>
+                        <span class="status {{invoice.status}}">&#9679; {{invoice.status}}</span>
+                    </div>
+                    <div class="invoice-buttons">
+                        <button>Edit</button>
+                        <button>Delete</button>
+                        <button>Mark as Paid</button>
+                    </div>
+                </div>
+                <div class="invoice-information" id="invoice-information-web">
+                    <table class="sender-info">
+                        <tr>
+                            <td>
+                                <h3 id="invoice-id-web">#{{invoice.id}}</h3>
+                                <span class="span-data">{{invoice.description}}</span>
+                            </td>
+                            <td>
+                                <span class="span-data">{{invoice.senderAddress.street}}</span><br>
+                                <span class="span-data">{{invoice.senderAddress.city}}</span><br>
+                                <span class="span-data">{{invoice.senderAddress.postCode}}</span><br>
+                                <span class="span-data">{{invoice.senderAddress.country}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="invoice-client-info">
+                        <div>
+                            <span class="titles">Invoice date</span><br>
+                            <span>{{invoice.createdAt}}</span><br><br>
+                            <span class="titles">Payment Due</span><br>
+                            <span>{{invoice.paymentDue}}</span><br>
+                        </div>
+                        <div>
+                            <span class="titles">Bill To</span><br>
+                            <span>{{invoice.clientName}}</span><br><br>
+                            <span class="span-data">{{invoice.clientAddress.street}}</span><br>
+                            <span class="span-data">{{invoice.clientAddress.city}}</span><br>
+                            <span class="span-data">{{invoice.clientAddress.postCode}}</span><br>
+                            <span class="span-data">{{invoice.clientAddress.country}}</span>
+                        </div>
+                        <div>
+                            <span class="titles">Invoice date</span><br>
+                            {{invoice.clientEmail}}<br>
+                        </div>
+                    </div>
+                    <table class="invoice-items" id="invoice-items-web" cellpadding="15px">
+                        <tr>
+                            <th>Item Name</th>
+                            <th>QTY.</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr *ngFor = "let item of invoice.items">
+                            <td>{{item.name}}</td>
+                            <td><span class="span-data">{{item.quantity}}</span></td>
+                            <td><span class="span-data">£ {{item.price}}</span></td>
+                            <td>£ {{item.total}}</td>
+                        </tr>
+                    </table>
+                    <table class="total-amount-due" id="total-amount-due-web" cellpadding="15px">
+                        <tr>
+                            <td>Amount Due</td>
+                            <td>£ {{invoice.total}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="mobile-invoice">
+                <div class="goback"><button id="go-back-button-mobile"><img src="../../../assets/icon-arrow-left.svg" alt="left arrow"> Go Back</button></div>
+                <div class="invoice-status-mobile" id="invoice-activity-mobile">
+                    <span class="status-heading">Status</span>
+                    <span class="status {{invoice.status}}">&#9679; {{invoice.status}}</span>
+                </div>
+                <div class="invoice-information"  id="invoice-information-mobile">
+                    <table class="sender-info">
+                        <tr>
+                            <td>
+                                <h3 id="invoice-id-mobile">#{{invoice.id}}</h3>
+                                <span class="span-data">{{invoice.description}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="span-data">{{invoice.senderAddress.street}}</span><br>
+                                <span class="span-data">{{invoice.senderAddress.city}}</span><br>
+                                <span class="span-data">{{invoice.senderAddress.postCode}}</span><br>
+                                <span class="span-data">{{invoice.senderAddress.country}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="invoice-client-info ">
+                        <div>
+                            <span class="titles">Invoice date</span><br>
+                            <span>{{invoice.createdAt}}</span><br><br>
+                            <span class="titles">Payment Due</span><br>
+                            <span>{{invoice.paymentDue}}</span><br>
+                        </div>
+                        <div>
+                            <span class="titles">Bill To</span><br>
+                            <span>{{invoice.clientName}}</span><br><br>
+                            <span class="span-data">{{invoice.clientAddress.street}}</span><br>
+                            <span class="span-data">{{invoice.clientAddress.city}}</span><br>
+                            <span class="span-data">{{invoice.clientAddress.postCode}}</span><br>
+                            <span class="span-data">{{invoice.clientAddress.country}}</span>
+                        </div>
+                    </div>
+                    <div class="client-email">
+                        <span class="titles">Invoice date</span><br>
+                        <span>{{invoice.clientEmail}}</span><br>
+                    </div>
+                    <table class="invoice-items" id="invoice-items-mobile" cellpadding="15px">
+                        <tr *ngFor = "let item of invoice.items">
+                            <td>
+                                {{item.name}}<br>
+                                <span class="span-data">{{item.quantity}} x £ {{item.price}}</span>
+                            </td>
+                            <td>£ {{item.total}}</td>
+                        </tr>
+                    </table>
+                    <table class="total-amount-due" id="total-amount-due-mobile"  cellpadding="15px">
+                        <tr>
+                            <td>Amount Due</td>
+                            <td>£ {{invoice.total}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="invoice-actions invoice-buttons" id="invoice-action-buttons">
+                    <button>Edit</button>
+                    <button>Delete</button>
+                    <button>Mark as Paid</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
