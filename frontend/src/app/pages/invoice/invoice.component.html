@@ -13,7 +13,7 @@
                     <div class="invoice-buttons">
                         <button>Edit</button>
                         <button>Delete</button>
-                        <button>Mark as Paid</button>
+                        <button *ngIf="invoice.status != 'paid'">Mark as Paid</button>
                     </div>
                 </div>
                 <div class="invoice-information" id="invoice-information-web">
